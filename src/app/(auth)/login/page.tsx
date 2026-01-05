@@ -54,15 +54,15 @@ export default function LoginPage() {
     <>
       <ToastContainer toasts={toasts} onClose={hideToast} />
       
-      <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-blue-50 to-indigo-100 p-4">
+      <main className="flex min-h-screen items-center justify-center p-4">
         <div className="w-full max-w-md">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="card animate-slide-up"
+            className="card max-sm:bg-transparent! max-sm:shadow-none! max-sm:border-none! animate-slide-up p-4!"
           >
-            <div className="card-body space-y-6">
+            <div className="card-body space-y-6 flex! flex-col! gap-2!">
               {/* Header */}
-              <div className="text-center">
+              <div className="text-center mb-5!">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
                   Iniciar sesión
                 </h1>

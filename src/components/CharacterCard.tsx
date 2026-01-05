@@ -12,7 +12,7 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
   };
 
   return (
-    <div className="card group hover:scale-105 transition-transform duration-200 overflow-hidden">
+    <div className="card group hover:scale-102 transition-all! ease-in-out! duration-200! overflow-hidden cursor-pointer">
       <div className="relative h-64 bg-gray-200">
         <img
           src={character.image}

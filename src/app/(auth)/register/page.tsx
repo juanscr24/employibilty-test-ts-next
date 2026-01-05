@@ -57,13 +57,13 @@ export default function RegisterPage() {
     <>
       <ToastContainer toasts={toasts} onClose={hideToast} />
       
-      <main className="flex min-h-screen items-center justify-center bg-linear-to-br from-purple-50 to-pink-100 p-4">
+      <main className="flex min-h-screen items-center justify-center p-4">
         <div className="w-full max-w-md">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="card animate-slide-up"
+            className="card max-sm:bg-transparent! max-sm:shadow-none! max-sm:border-none! animate-slide-up p-4!"
           >
-            <div className="card-body space-y-5">
+            <div className="card-body space-y-6 flex! flex-col! gap-2!">
               {/* Header */}
               <div className="text-center">
                 <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -141,7 +141,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="btn btn-primary w-full"
+                className="btn btn-primary w-full mt-2!"
               >
                 {isSubmitting ? (
                   <>
@@ -158,7 +158,7 @@ export default function RegisterPage() {
                 ¿Ya tienes una cuenta?{' '}
                 <Link
                   href="/login"
-                  className="text-purple-600 hover:text-purple-700 font-medium hover:underline"
+                  className="text-blue-600 hover:text-blue-700 font-medium hover:underline"
                 >
                   Inicia sesión aquí
                 </Link>

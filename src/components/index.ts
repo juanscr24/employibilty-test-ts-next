@@ -1,5 +1,4 @@
 // Exportar todos los componentes desde un punto central
-export * from './Avatar';
 export * from './CharacterCard';
 export * from './DashboardHeader';
 export * from './ErrorState';
