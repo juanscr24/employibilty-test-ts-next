@@ -1,11 +1,11 @@
 /**
- * Constantes globales de la aplicación
+ * Global application constants
  */
 
 // API
 export const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || 'https://rickandmortyapi.com/api';
-export const API_TIMEOUT = 10000; // 10 segundos
+export const API_TIMEOUT = 10000; // 10 seconds
 
 // Local Storage Keys
 export const STORAGE_KEYS = {
@@ -14,21 +14,21 @@ export const STORAGE_KEYS = {
   THEME: 'theme',
 } as const;
 
-// Paginación
+// Pagination
 export const PAGINATION = {
   DEFAULT_PAGE: 1,
   DEFAULT_LIMIT: 20,
   MAX_LIMIT: 100,
 } as const;
 
-// Tiempos de espera
+// Delays
 export const DELAYS = {
   TOAST_DURATION: 3000,
   DEBOUNCE_DELAY: 300,
   ANIMATION_DURATION: 200,
 } as const;
 
-// Mensajes de la aplicación
+// Application messages
 export const MESSAGES = {
   ERROR: {
     GENERIC: 'Ha ocurrido un error inesperado',
@@ -45,14 +45,14 @@ export const MESSAGES = {
   },
 } as const;
 
-// Estados de personajes
+// Character statuses
 export const CHARACTER_STATUS = {
   ALIVE: 'Alive',
   DEAD: 'Dead',
   UNKNOWN: 'unknown',
 } as const;
 
-// Géneros de personajes
+// Character genders
 export const CHARACTER_GENDER = {
   FEMALE: 'Female',
   MALE: 'Male',

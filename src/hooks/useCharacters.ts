@@ -42,30 +42,30 @@ export const useCharacters = (): UseCharactersReturn => {
     fetchCharacters();
   }, [fetchCharacters]);
 
-  // Filtrar personajes
+  // Characters filtered based on filters state
   const filteredCharacters = useMemo(() => {
     let result = [...characters];
 
-    // Filtrar por nombre
+    // Name filter
     if (filters.name) {
       result = result.filter((char) =>
         char.name.toLowerCase().includes(filters.name!.toLowerCase())
       );
     }
 
-    // Filtrar por estado
+    // Status filter
     if (filters.status && filters.status !== 'all') {
       result = result.filter((char) => char.status === filters.status);
     }
 
-    // Filtrar por especie
+    // Species filter
     if (filters.species) {
       result = result.filter((char) =>
         char.species.toLowerCase().includes(filters.species!.toLowerCase())
       );
     }
 
-    // Filtrar por género
+    // Gender filter
     if (filters.gender) {
       result = result.filter((char) => char.gender === filters.gender);
     }
@@ -73,7 +73,7 @@ export const useCharacters = (): UseCharactersReturn => {
     return result;
   }, [characters, filters]);
 
-  // Calcular estadísticas
+  // Character statistics
   const stats = useMemo((): CharacterStats => {
     const alive = characters.filter((c) => c.status === 'Alive').length;
     const dead = characters.filter((c) => c.status === 'Dead').length;

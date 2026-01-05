@@ -1,5 +1,5 @@
 /**
- * Configuración de rutas de la aplicación
+ * Application route configuration
  */
 
 export const ROUTES = {

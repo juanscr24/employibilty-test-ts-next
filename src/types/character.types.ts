@@ -1,5 +1,5 @@
 /**
- * Tipos relacionados con personajes de Rick & Morty
+ * Types related to Rick and Morty characters
  */
 
 export interface Character {

@@ -10,7 +10,7 @@ export const useLocalStorage = <T,>(
   key: string,
   initialValue: T
 ): UseLocalStorageReturn<T> => {
-  // Estado para almacenar el valor
+  // State to store the value
   const [storedValue, setStoredValue] = useState<T>(() => {
     if (typeof window === 'undefined') {
       return initialValue;
@@ -25,7 +25,7 @@ export const useLocalStorage = <T,>(
     }
   });
 
-  // Función para guardar en localStorage
+  // Function to save to localStorage
   const setValue = useCallback(
     (value: T) => {
       try {
@@ -41,7 +41,7 @@ export const useLocalStorage = <T,>(
     [key]
   );
 
-  // Función para eliminar de localStorage
+  // Function to remove from localStorage
   const removeValue = useCallback(() => {
     try {
       setStoredValue(initialValue);

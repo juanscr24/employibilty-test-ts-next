@@ -1,5 +1,5 @@
 /**
- * Tipos comunes de la aplicación
+ * Common application types
  */
 
 export interface ApiError {

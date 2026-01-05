@@ -1,5 +1,5 @@
 /**
- * Tipos relacionados con autenticación y usuarios
+ * Types related to authentication and users
  */
 
 export interface User {

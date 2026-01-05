@@ -22,7 +22,7 @@ export const useAuth = (): UseAuthReturn => {
       setIsLoading(true);
       setError(null);
 
-      // Simulación de login - reemplazar con tu endpoint real
+      // Login simulation - replace with your real endpoint
       const response = await axiosInstance.post<AuthResponse>('/auth/login', {
         email,
         password,
@@ -30,7 +30,7 @@ export const useAuth = (): UseAuthReturn => {
 
       const { user: userData, token } = response.data;
 
-      // Guardar token en localStorage
+      // Save token to localStorage
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
 
@@ -50,7 +50,7 @@ export const useAuth = (): UseAuthReturn => {
         setIsLoading(true);
         setError(null);
 
-        // Simulación de registro - reemplazar con tu endpoint real
+        // Registration simulation - replace with your real endpoint
         const response = await axiosInstance.post<AuthResponse>('/auth/register', {
           name,
           email,
@@ -59,7 +59,7 @@ export const useAuth = (): UseAuthReturn => {
 
         const { user: userData, token } = response.data;
 
-        // Guardar token en localStorage
+        // Save token to localStorage
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(userData));
 

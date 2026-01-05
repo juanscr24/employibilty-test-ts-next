@@ -2,12 +2,12 @@ import axiosInstance from './axios';
 import { CharactersResponse, Character } from '@/types';
 
 /**
- * Servicio para interactuar con la API de Rick and Morty
+ * Service to interact with the Rick and Morty API
  */
 
 export const characterService = {
   /**
-   * Obtener todos los personajes
+   * Get all characters
    */
   getAll: async (): Promise<Character[]> => {
     const response = await axiosInstance.get<CharactersResponse>('/character');
@@ -15,7 +15,7 @@ export const characterService = {
   },
 
   /**
-   * Obtener un personaje por ID
+   * Get a character by ID
    */
   getById: async (id: number): Promise<Character> => {
     const response = await axiosInstance.get<Character>(`/character/${id}`);
@@ -23,7 +23,7 @@ export const characterService = {
   },
 
   /**
-   * Buscar personajes con filtros
+   * Search characters with filters
    */
   search: async (params: {
     name?: string;
@@ -49,30 +49,30 @@ export const characterService = {
 };
 
 /**
- * Servicio de autenticación (simulado - adaptar a tu backend)
+ * Authentication service (simulated - adapt to your backend)
  */
 export const authService = {
   /**
-   * Login de usuario
+   * User login
    */
   login: async (email: string, password: string) => {
-    // Simulación - reemplazar con endpoint real
+    // Simulation - replace with real endpoint
     return axiosInstance.post('/auth/login', { email, password });
   },
 
   /**
-   * Registro de usuario
+   * User registration
    */
   register: async (name: string, email: string, password: string) => {
-    // Simulación - reemplazar con endpoint real
+    // Simulation - replace with real endpoint
     return axiosInstance.post('/auth/register', { name, email, password });
   },
 
   /**
-   * Logout de usuario
+   * User logout
    */
   logout: async () => {
-    // Simulación - reemplazar con endpoint real
+    // Simulation - replace with real endpoint
     return axiosInstance.post('/auth/logout');
   },
 };

@@ -1,5 +1,5 @@
 /**
- * Helper para formatear fechas
+ * Date formatting helper
  */
 export const formatDate = (date: string | Date): string => {
   const d = new Date(date);
@@ -11,14 +11,14 @@ export const formatDate = (date: string | Date): string => {
 };
 
 /**
- * Helper para capitalizar texto
+ * Helper to capitalize text
  */
 export const capitalize = (text: string): string => {
   return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
 };
 
 /**
- * Helper para generar slug de texto
+ * Helper to generate text slug
  */
 export const slugify = (text: string): string => {
   return text
@@ -31,7 +31,7 @@ export const slugify = (text: string): string => {
 };
 
 /**
- * Helper para validar email
+ * Email validation helper
  */
 export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -39,7 +39,7 @@ export const isValidEmail = (email: string): boolean => {
 };
 
 /**
- * Helper para truncar texto
+ * Text truncation helper
  */
 export const truncate = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) return text;
@@ -47,14 +47,14 @@ export const truncate = (text: string, maxLength: number): string => {
 };
 
 /**
- * Helper para delay/espera
+ * Delay/wait helper
  */
 export const sleep = (ms: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
 /**
- * Helper para debounce
+ * Debounce helper
  */
 export const debounce = <T extends (...args: any[]) => any>(
   func: T,

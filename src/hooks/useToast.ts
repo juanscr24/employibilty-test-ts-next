@@ -23,7 +23,7 @@ export const useToast = (duration: number = 3000): UseToastReturn => {
 
     setToasts((prev) => [...prev, newToast]);
 
-    // Auto-hide después de la duración especificada
+    // Auto-hide after the specified duration
     setTimeout(() => {
       hideToast(id);
     }, duration);

@@ -1,6 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
-// Configuración base de axios
+// Axios base configuration
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL || 'https://rickandmortyapi.com/api',
   timeout: 10000,
@@ -9,10 +9,10 @@ const axiosInstance = axios.create({
   },
 });
 
-// Interceptor de request - agregar token si existe
+// Request interceptor - add token if it exists
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // Puedes agregar token de autenticación aquí
+    // You can add authentication token here
     const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
     
     if (token && config.headers) {
@@ -26,19 +26,19 @@ axiosInstance.interceptors.request.use(
   }
 );
 
-// Interceptor de response - manejo centralizado de errores
+// Response interceptor - centralized error handling
 axiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error: AxiosError) => {
-    // Manejo de errores comunes
+    // Common error handling
     if (error.response) {
       const status = error.response.status;
       
       switch (status) {
         case 401:
-          // Token expirado o no autorizado
+          // Token expired or unauthorized
           if (typeof window !== 'undefined') {
             localStorage.removeItem('token');
             window.location.href = '/login';
