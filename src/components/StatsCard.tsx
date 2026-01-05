@@ -1,27 +1,30 @@
-interface StatsCardProps {
+interface StatCardProps {
   title: string;
   value: number;
-  variant?: 'success' | 'danger' | 'warning' | 'default';
+  color: 'blue' | 'green' | 'red' | 'gray';
+  icon: React.ReactNode;
 }
 
-export default function StatsCard({
-  title,
-  value,
-  variant = 'default',
-}: StatsCardProps) {
-  const colorMap = {
-    success: 'text-success',
-    danger: 'text-danger',
-    warning: 'text-warning',
-    default: 'text-dark',
+export const StatCard = ({ title, value, color, icon }: StatCardProps) => {
+  const colorClasses = {
+    blue: 'bg-blue-50 text-blue-600 border-blue-200',
+    green: 'bg-green-50 text-green-600 border-green-200',
+    red: 'bg-red-50 text-red-600 border-red-200',
+    gray: 'bg-gray-50 text-gray-600 border-gray-200',
   };
 
   return (
-    <div className="card text-center p-3 shadow-sm">
-      <h6>{title}</h6>
-      <p className={`fw-bold ${colorMap[variant]}`}>
-        {value}
-      </p>
+    <div className={`card border-l-4 ${colorClasses[color]}`}>
+      <div className="card-body">
+        <div className="flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-gray-600 mb-1">{title}</p>
+            <p className="text-3xl font-bold">{value}</p>
+          </div>
+          <div className="opacity-80">{icon}</div>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
