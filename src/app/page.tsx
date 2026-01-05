@@ -1,38 +1,31 @@
-'use client'
-import { getCharacters } from "@/services/api"
-import { useEffect, useState } from "react"
-import { Card } from "../components/Card"
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { LoadingSpinner } from '@/components/Loading';
 
 export default function Home() {
-  const [characters, setCharacters] = useState<any[]>([])
-  const [loading, setLoading] = useState(false)
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
-    fetch("https://rickandmortyapi.com/api/character")
-      .then(res => res.json())
-      .then(data => {
-        setCharacters(data.results)
-        setLoading(false)
-      })
-  }, [])
+    // Redirigir automáticamente al dashboard
+    const timer = setTimeout(() => {
+      router.push('/dashboard');
+    }, 1000);
 
-  if (loading) return <p>Cargando...</p>
+    return () => clearTimeout(timer);
+  }, [router]);
 
   return (
-    <div className="">
-      {characters.map((char, index) => (
-        <div key={index}>
-          <h3>{char.name}</h3>
-          <Card
-            title={char.name}
-            description={char.description}
-            imageUrl={char.image}
-            onClick={() => getCharacters()}
-          />
-          <img src={char.image} />
-        </div>
-      ))}
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-blue-50 via-indigo-50 to-purple-50">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Rick & Morty App
+        </h1>
+        <p className="text-gray-600 mb-8">Cargando aplicación...</p>
+        <LoadingSpinner size="lg" className="text-blue-600" />
+      </div>
     </div>
-  )
+  );
 }

@@ -8,11 +8,13 @@ export default function DashboardHeader({
   subtitle,
 }: DashboardHeaderProps) {
   return (
-    <header className="mb-4">
-      <h1 className="text-2xl font-bold">{title}</h1>
-      {subtitle && (
-        <p className="text-muted mt-1">{subtitle}</p>
-      )}
-    </header>
+    <header>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            {title}
+          </h1>
+          <p className="text-gray-600">
+            {subtitle}
+          </p>
+      </header>
   );
 }
