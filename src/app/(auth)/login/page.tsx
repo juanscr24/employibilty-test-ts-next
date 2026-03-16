@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, isLoading } = useAuth();
+  const { login } = useAuth();
   const { toasts, showToast, hideToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -30,19 +30,12 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       setIsSubmitting(true);
-      
-      // Simulación de login - ajustar según tu backend
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
+      await login(data.email, data.password);
       showToast('¡Inicio de sesión exitoso!', 'success');
-      
-      // Redirigir al dashboard
-      setTimeout(() => {
-        router.push('/dashboard');
-      }, 1000);
+      setTimeout(() => router.push('/dashboard'), 800);
     } catch (error: any) {
       showToast(
-        error.message || 'Error al iniciar sesión. Verifica tus credenciales.',
+        error?.response?.data?.message || 'Error al iniciar sesión. Verifica tus credenciales.',
         'error'
       );
     } finally {

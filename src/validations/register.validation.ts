@@ -26,6 +26,14 @@ export const registerSchema = z
     confirmPassword: z
       .string()
       .min(1, 'Debes confirmar la contraseña'),
+    documentTypeId: z
+      .number({ error: 'Selecciona un tipo de documento' })
+      .int()
+      .positive('Selecciona un tipo de documento'),
+    documentNumber: z
+      .string()
+      .min(1, 'El número de documento es obligatorio')
+      .max(20, 'El número de documento no puede exceder 20 caracteres'),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: 'Las contraseñas no coinciden',

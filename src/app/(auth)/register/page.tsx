@@ -3,49 +3,56 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { registerSchema, RegisterFormData } from '@/validations';
 import { useAuth } from '@/hooks';
 import { FormField } from '@/components/FormField';
 import { LoadingSpinner } from '@/components/Loading';
 import { ToastContainer } from '@/components/Toast';
 import { useToast } from '@/hooks';
+import { DocumentType } from '@/types';
+import { apiClient } from '@/libs/axios';
 import Link from 'next/link';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const { register: registerUser, isLoading } = useAuth();
+  const { register: authRegister } = useAuth();
   const { toasts, showToast, hideToast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [documentTypes, setDocumentTypes] = useState<DocumentType[]>([]);
+
+  useEffect(() => {
+    apiClient
+      .get<DocumentType[]>('/document-types')
+      .then((res) => setDocumentTypes(res.data))
+      .catch(() => {});
+  }, []);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    setValue,
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     mode: 'onBlur',
   });
 
-  const password = watch('password');
-
   const onSubmit = async (data: RegisterFormData) => {
     try {
       setIsSubmitting(true);
-      
-      // Simulación de registro - ajustar según tu backend
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
+      await authRegister({
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        documentTypeId: data.documentTypeId,
+        documentNumber: data.documentNumber,
+      });
       showToast('¡Registro exitoso! Redirigiendo...', 'success');
-      
-      // Redirigir al login o dashboard
-      setTimeout(() => {
-        router.push('/login');
-      }, 1000);
+      setTimeout(() => router.push('/dashboard'), 800);
     } catch (error: any) {
       showToast(
-        error.message || 'Error al registrarse. Intenta nuevamente.',
+        error?.response?.data?.message || 'Error al registrarse. Intenta nuevamente.',
         'error'
       );
     } finally {
@@ -133,6 +140,47 @@ export default function RegisterPage() {
                   placeholder="••••••••"
                   className={`input ${errors.confirmPassword ? 'input-error' : ''}`}
                   {...register('confirmPassword')}
+                  disabled={isSubmitting}
+                />
+              </FormField>
+
+              {/* Document Type Field */}
+              <FormField
+                label="Tipo de documento"
+                error={errors.documentTypeId?.message}
+                required
+              >
+                <select
+                  className={`input ${errors.documentTypeId ? 'input-error' : ''}`}
+                  disabled={isSubmitting}
+                  defaultValue=""
+                  onChange={(e) => {
+                    const val = e.target.value;
+                    setValue('documentTypeId', val ? parseInt(val, 10) : (undefined as any));
+                  }}
+                >
+                  <option value="" disabled>
+                    Selecciona un tipo
+                  </option>
+                  {documentTypes.map((dt) => (
+                    <option key={dt.id} value={dt.id}>
+                      {dt.abbreviation} — {dt.name}
+                    </option>
+                  ))}
+                </select>
+              </FormField>
+
+              {/* Document Number Field */}
+              <FormField
+                label="Número de documento"
+                error={errors.documentNumber?.message}
+                required
+              >
+                <input
+                  type="text"
+                  placeholder="1234567890"
+                  className={`input ${errors.documentNumber ? 'input-error' : ''}`}
+                  {...register('documentNumber')}
                   disabled={isSubmitting}
                 />
               </FormField>
