@@ -3,10 +3,14 @@
  */
 
 export interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
-  avatar?: string;
+  role: 'admin' | 'user';
+  documentTypeId?: number | null;
+  documentTypeAbbr?: string | null;
+  documentTypeName?: string | null;
+  documentNumber?: string | null;
   createdAt: string;
 }
 
@@ -25,4 +29,25 @@ export interface RegisterData {
   email: string;
   password: string;
   confirmPassword: string;
+  documentTypeId?: number;
+  documentNumber?: string;
+}
+
+export interface DocumentType {
+  id: number;
+  name: string;
+  abbreviation: string;
+}
+
+export interface AdminUser {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  document_type_name: string | null;
+  document_type_abbr: string | null;
+  document_type_id: number | null;
+  document_number: string | null;
+  created_at: string;
+  updated_at: string;
 }
