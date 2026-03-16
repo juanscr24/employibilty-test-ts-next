@@ -1091,32 +1091,9 @@ xl: 2rem (32px)
 .badge      - Status labels
 ```
 
----
-
-## 🤝 Contributing
-
-If you wish to contribute:
-
-1. Fork the project
-2. Create a branch (`git checkout -b feature/new-feature`)
-3. Commit changes (`git commit -m 'Add: new feature'`)
-4. Push to branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
-
----
-
 ## 📄 License
 
 This project is part of an employability assessment for educational purposes.
-
----
-
-## 👨‍💻 Author
-
-**Juan Camilo Sanchez Romero**
-- GitHub: [@juanscr24](https://github.com/juanscr24)
-- Project: Employability Assessment - Rick & Morty App
-
 ---
 
 ## 📝 Final Notes
@@ -1151,7 +1128,3 @@ This project demonstrates the ability to:
 - Document and communicate technical changes
 
 **The goal was not to create a new app, but to demonstrate refactoring skills and architectural thinking typical of a professional developer.**
-
----
-
-**Thank you for reviewing this project! 🚀**
